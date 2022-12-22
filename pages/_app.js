@@ -2,6 +2,8 @@ import styled, { createGlobalStyle } from "styled-components";
 import { Colors } from "../src/components/Theme";
 import { useState } from "react";
 import Header from "../src/components/Header";
+import Button from "../src/components/styled/Button.styled";
+import Page from "../src/components/styled/Page.styled";
 
 const GlobalStyle = createGlobalStyle`
 
@@ -56,8 +58,36 @@ const Main = styled.div`
   width: 100%;
   min-height: 100vh;
 `;
-const MobileMenu = styled.div``;
-const NavItem = styled.a``;
+
+const MobileMenu = styled.div`
+  background-color: ${Colors.Background};
+  color: ${Colors.White};
+  z-index: ${(p) => (p.open ? "9" : "-1")};
+  position: absolute;
+  padding: 2rem 1rem 1rem 1.2rem;
+  left: 0;
+  display: flex;
+  width: ${(p) => (p.open ? "100%" : "0")};
+  heigh: 100%;
+
+  ul {
+    opacity: ${(p) => (p.open ? "1" : "0")};
+    transition: all 0.1s ease-out;
+    text-decoration: none;
+    list-style: none;
+    display: flex;
+    flex-direction: column;
+    gap: 2rem;
+    width: 100%;
+    li{
+      cursor
+    }
+  }
+`;
+const NavItem = styled.a`
+  font-size: 1.2rem;
+  font-weight: 400;
+`;
 
 function MyApp({ Component, pageProps }) {
   const [MobileMenuIsOpen, setMobileMenuIsOpen] = useState(false);
@@ -67,8 +97,33 @@ function MyApp({ Component, pageProps }) {
       <Main>
         {/* header */}
         <Header mobileMenu={{ MobileMenuIsOpen, setMobileMenuIsOpen }} />
-        <Component {...pageProps} />
         {/* page */}
+        <Page>
+          <MobileMenu open={MobileMenuIsOpen}>
+            <ul>
+              <li>
+                <NavItem href="#">Marketplace</NavItem>
+              </li>
+              <li>
+                <NavItem href="#">Drops</NavItem>
+              </li>
+              <li>
+                <NavItem href="#">Brands</NavItem>
+              </li>
+              <li>
+                <Button>Create</Button>
+              </li>
+              <hr color={Colors.Primary} size="1" />
+              <li>
+                <NavItem href="#">Sign In</NavItem>
+              </li>
+              <li>
+                <NavItem href="#">Sign Up</NavItem>
+              </li>
+            </ul>
+          </MobileMenu>
+          <Component {...pageProps} />
+        </Page>
         {/* footer */}
       </Main>
     </>

@@ -9,6 +9,7 @@ const Button = styled.button`
   border: none;
   padding: 0.5rem 1.5rem;
   font-weight: 500;
+  color: ${Colors.White}
   width: max-content;
   background: linear-gradient(
     to right,

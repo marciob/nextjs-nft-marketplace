@@ -3,7 +3,7 @@ import styled from "styled-components";
 import { Colors, Devices } from "./Theme";
 import { BsGithub, BsGlobe } from "react-icons/bs";
 import Link from "next/link";
-import Button from "./styled/Button";
+import Button from "./styled/Button.styled";
 import SearchBar from "./Header/SearchBar";
 
 const IndexEl = styled.article`
